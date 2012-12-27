@@ -5,6 +5,8 @@ FRAMES.core =
 
 	parseURL: ->
 
+		FRAMES_DEFAULTS = FRAMES_DEFAULTS || {}
+
 		_obj = @
 
 		# Break up URL and create an Array
@@ -25,14 +27,23 @@ FRAMES.core =
 		@action = _loc[1]
 		@arguments = _argument_array
 
+		# If welcome
+		unless $.isEmptyObject FRAMES_DEFAULTS
+			# and no controller is passed.
+			if @controller is ""
+				@controller = FRAMES_DEFAULTS.controller
+				@action = FRAMES_DEFAULTS.action
+
 		# If no action is passed, default to the index method
 		@action = "index"  unless @action
+
+		# console.log @controller
 
 		# Init()
 		loaded = setInterval(->
 			if typeof Handlebars isnt "undefined"
 				clearInterval loaded
-				_obj.runFrame()  unless @controller is ""
+				_obj.runFrame()  unless _obj.controller is ""
 		, 100)
 		
 

@@ -5,7 +5,8 @@ goog.provide("FRAMES.core");
 FRAMES.core = {
   core_objects: [],
   parseURL: function() {
-    var loaded, _argument_array, _loc, _obj;
+    var FRAMES_DEFAULTS, loaded, _argument_array, _loc, _obj;
+    FRAMES_DEFAULTS = FRAMES_DEFAULTS || {};
     _obj = this;
     _loc = $(location).attr("hash");
     _loc = _loc.replace(/#!\//g, "");
@@ -26,13 +27,19 @@ FRAMES.core = {
     this.controller = _loc[0];
     this.action = _loc[1];
     this["arguments"] = _argument_array;
+    if (!$.isEmptyObject(FRAMES_DEFAULTS)) {
+      if (this.controller === "") {
+        this.controller = FRAMES_DEFAULTS.controller;
+        this.action = FRAMES_DEFAULTS.action;
+      }
+    }
     if (!this.action) {
       this.action = "index";
     }
     return loaded = setInterval(function() {
       if (typeof Handlebars !== "undefined") {
         clearInterval(loaded);
-        if (this.controller !== "") {
+        if (_obj.controller !== "") {
           return _obj.runFrame();
         }
       }

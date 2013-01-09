@@ -10,6 +10,7 @@ goog.provide "FRAMES.dependencies"
   js_array = [
     goog.basePath + "frames_depends/handlebars.js"
     goog.basePath + "frames_depends/underscore.js"
+    goog.basePath + "frames_depends/spin.js"
   ]
   
   $.each js_array, (i, o) -> 
@@ -18,6 +19,5 @@ goog.provide "FRAMES.dependencies"
     script.src = o
     $("head").append script
 
-    if i is js_array.length
-      $.PubSub('dependsFinished').publish()
+    $.PubSub('dependsFinished').publish()  if i is js_array.length
 )(jQuery)

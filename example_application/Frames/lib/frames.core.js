@@ -5,9 +5,11 @@ goog.provide("FRAMES.core");
 FRAMES.core = {
   core_objects: [],
   parseURL: function() {
-    var FRAMES_DEFAULTS, loaded, _argument_array, _loc, _obj;
-    FRAMES_DEFAULTS = FRAMES_DEFAULTS || {};
+    var loaded, _argument_array, _loc, _obj;
+    window.scrollTo(0, 0);
+    FRAMES.helpers.presentLoader();
     _obj = this;
+    window.FRAMES_DEFAULTS = window.FRAMES_DEFAULTS || {};
     _loc = $(location).attr("hash");
     _loc = _loc.replace(/#!\//g, "");
     if (_loc.substring(_loc.length - 1, _loc.length) === "/") {
@@ -27,10 +29,10 @@ FRAMES.core = {
     this.controller = _loc[0];
     this.action = _loc[1];
     this["arguments"] = _argument_array;
-    if (!$.isEmptyObject(FRAMES_DEFAULTS)) {
+    if (!$.isEmptyObject(window.FRAMES_DEFAULTS)) {
       if (this.controller === "") {
-        this.controller = FRAMES_DEFAULTS.controller;
-        this.action = FRAMES_DEFAULTS.action;
+        this.controller = window.FRAMES_DEFAULTS.controller;
+        this.action = window.FRAMES_DEFAULTS.action;
       }
     }
     if (!this.action) {
@@ -97,7 +99,7 @@ FRAMES.core = {
         };
         console.error(err.stack);
         return $.ajax({
-          url: "FRAMES/views/_frames_error.html",
+          url: "Frames/views/_frames_error.html",
           dataType: "html",
           success: function(res) {
             var source, template;
@@ -131,7 +133,7 @@ FRAMES.core = {
     var _body, _id, _source, _template, _view, _yield;
     _body = $("body");
     _yield = $("#yield");
-    _view = "FRAMES/views/_" + this.controller + "_" + this.action + ".html";
+    _view = "Frames/views/_" + this.controller + "_" + this.action + ".html";
     _id = "_" + this.controller + "_" + this.action;
     if ($("#" + _id).length === 0) {
       return $.ajax({
@@ -143,14 +145,16 @@ FRAMES.core = {
           _yield.empty();
           _source = $("#" + _id).html();
           _template = Handlebars.compile(_source);
-          return _yield.append(_template(data));
+          _yield.append(_template(data));
+          return FRAMES.helpers.hideLoader();
         }
       });
     } else {
       _yield.empty();
       _source = $("#" + _id).html();
       _template = Handlebars.compile(_source);
-      return _yield.append(_template(data));
+      _yield.append(_template(data));
+      return FRAMES.helpers.hideLoader();
     }
   }
 };

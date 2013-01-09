@@ -10,7 +10,7 @@ goog.provide("FRAMES.dependencies");
 
 (function($) {
   var js_array;
-  js_array = [goog.basePath + "frames_depends/handlebars.js", goog.basePath + "frames_depends/underscore.js"];
+  js_array = [goog.basePath + "frames_depends/handlebars.js", goog.basePath + "frames_depends/underscore.js", goog.basePath + "frames_depends/spin.js"];
   return $.each(js_array, function(i, o) {
     var script;
     script = document.createElement("script");

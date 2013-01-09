@@ -5,9 +5,13 @@ FRAMES.core =
 
 	parseURL: ->
 
-		FRAMES_DEFAULTS = FRAMES_DEFAULTS || {}
+		window.scrollTo 0,0
+
+		FRAMES.helpers.presentLoader()
 
 		_obj = @
+
+		window.FRAMES_DEFAULTS = window.FRAMES_DEFAULTS || {}
 
 		# Break up URL and create an Array
 		_loc = $(location).attr("hash")
@@ -28,11 +32,11 @@ FRAMES.core =
 		@arguments = _argument_array
 
 		# If welcome
-		unless $.isEmptyObject FRAMES_DEFAULTS
+		unless $.isEmptyObject window.FRAMES_DEFAULTS
 			# and no controller is passed.
 			if @controller is ""
-				@controller = FRAMES_DEFAULTS.controller
-				@action = FRAMES_DEFAULTS.action
+				@controller = window.FRAMES_DEFAULTS.controller
+				@action = window.FRAMES_DEFAULTS.action
 
 		# If no action is passed, default to the index method
 		@action = "index"  unless @action
@@ -119,7 +123,7 @@ FRAMES.core =
 					
 
 				$.ajax
-					url: "FRAMES/views/_frames_error.html"
+					url: "Frames/views/_frames_error.html"
 					dataType: "html"
 					success: (res) ->
 						_body.html res
@@ -150,7 +154,7 @@ FRAMES.core =
 
 		_body = $("body")
 		_yield = $("#yield")
-		_view = "FRAMES/views/_" + @controller + "_" + @action + ".html"
+		_view = "Frames/views/_" + @controller + "_" + @action + ".html"
 		_id = "_" + @controller + "_" + @action
 
 		# Assure Handlebar view is only added one time.
@@ -164,11 +168,16 @@ FRAMES.core =
 					_source = $("#" + _id).html()
 					_template = Handlebars.compile(_source)
 					_yield.append(_template(data))
+
+					FRAMES.helpers.hideLoader()
 		else
 			_yield.empty()
 			_source = $("#" + _id).html()
 			_template = Handlebars.compile(_source)
 			_yield.append(_template(data))
+
+			FRAMES.helpers.hideLoader()
+			
 
 		
 

@@ -1,6 +1,13 @@
 /*************************************************************************************
+ * REMOVE THIS IN PRODUCTION. OR DON'T.
+*/
+
+$.ajaxSetup({
+	cache: false
+});
+
+/*************************************************************************************
  * LOVE IT OR HATE IT, HERES THE FRAMES GLOBAL NAMESPACE
- * 
 */
 
 var FRAMES = {

@@ -1,7 +1,3 @@
-$.ajaxSetup({
-	cache: false
-});
-
 FRAMES.core = {
     core_objects: [],
     base_path: null,

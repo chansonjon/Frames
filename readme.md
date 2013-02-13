@@ -6,7 +6,7 @@ Frames is a fun little Javascript MVC Framework. Does the world need another Jav
 
 ## What Makes Frames Different?
 
-My first goal with Frames was to drive everything off of a controller/action notion. Much like Ruby on Rails or CakePHP, I wanted to be able to look at a URL and know exactly where the code being executed lived.
+My first goal with Frames was to drive everything off of a controller/action notion. Much like Ruby on Rails or CakePHP. I wanted to be able to look at a URL and know exactly where the code driving the page was being executed.
 
 > http://localhost/FramesApplication/#!/pages/about/
 

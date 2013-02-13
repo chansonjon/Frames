@@ -10,7 +10,7 @@ Page = (function() {
 		
 		return {
 			title: "Welcome to FRAMES",
-			text: "I Hope you enjoy it!"
+			text: "I hope you enjoy it!"
 		}
 		
 	}

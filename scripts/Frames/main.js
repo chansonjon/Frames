@@ -1,7 +1,13 @@
 /*************************************************************************************
- * REMOVE THIS IN PRODUCTION. OR DON'T.
+ * REMOVE THIS IN PRODUCTION. OR DON'T. CACHING PREVENTION.
 */
 
+// So RequireJS doesn't cache models and controllers.
+require.config({
+    urlArgs: "v=" + (new Date()).getTime()
+});
+
+// Anything requested with jQuery
 $.ajaxSetup({
 	cache: false
 });

@@ -153,25 +153,32 @@ FRAMES.core = {
 					}, 100);
 				},
 				renderView: function (options) {
-					var _body, _id, _source, _template, _view, _yield, _cb, _append;
-					_cb = options.callback || null;
+					var _body, _id, _source, _template, _view, _yield, _cb, _append, _data, _compile;
+					_cb = (options && options.callback) ? options.callback : null;
 					_body = $("body");
-					_yield = (options.renderTo) ? $(options.renderTo) : $("#yield");
-					_append = (options.append) ? options.append : false;
+					_yield = (options && options.renderTo) ? $(options.renderTo) : $("#yield");
+					_append = (options && options.append) ? options.append : false;
 					_view = FRAMES.core.base_path + "_views/_" + this.controller + "_" + this.action + ".html";
 					_id = "_" + this.controller + "_" + this.action;
+					_data = (options && options.data) ? options.data : {};
+					_compile = (options && options.compile) ? options.compile : true;
 					if ($("#" + _id).length === 0) {
 						$.ajax({
 							url: _view,
 							dataType: "html",
 							success: function (res) {
 								var _source, _template;
-								_body.append(res);
 								_yield.empty();
-								_source = $("#" + _id).html();
-								_template = Handlebars.compile(_source);
-								_test = Handlebars.precompile(_source);
-								_yield.append(_template(options.data));
+								if (options.compile) {
+									_body.append(res);
+									_source = $("#" + _id).html();
+									_template = Handlebars.compile(_source);
+									_test = Handlebars.precompile(_source);
+									_yield.append(_template(_data));
+								} else {
+									_yield.append(res);
+								}
+							
 								FRAMES.helpers.hideLoader();
 								
 								if (typeof _cb == "function") { _cb(); }
@@ -183,9 +190,15 @@ FRAMES.core = {
 						if (!_append) {
 							_yield.empty();
 						}
-						_source = $("#" + _id).html();
-						_template = Handlebars.compile(_source);
-						_yield.append(_template(options.data));
+						if (options.compile) {
+							_body.append(res);
+							_source = $("#" + _id).html();
+							_template = Handlebars.compile(_source);
+							_test = Handlebars.precompile(_source);
+							_yield.append(_template(_data));
+						} else {
+							_yield.append(res);
+						}
 						FRAMES.helpers.hideLoader();
 						
 						if (typeof _cb == "function") { _cb.call(this, _yield); }

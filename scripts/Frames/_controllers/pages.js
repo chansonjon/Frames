@@ -20,11 +20,10 @@ Pages = (function() {
 	
 	Pages.prototype.welcome = function(args) {
 		
-		// Set some data as an example
-		var _data = this.page.setData();
-		
 		// Render the view passing data
-		FRAMES.core.renderView(_data);
+		FRAMES.core.renderView({
+			compile: false
+		});
 		
 	}
 	

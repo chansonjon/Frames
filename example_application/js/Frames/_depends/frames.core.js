@@ -152,14 +152,16 @@ FRAMES.core = {
 					}
 					}, 100);
 				},
-				renderView: function (data) {
-					var _body, _id, _source, _template, _view, _yield;
+				renderView: function (options) {
+					var _body, _id, _source, _template, _view, _yield, _cb, _append;
+					_cb = options.callback || null;
 					_body = $("body");
-					_yield = $("#yield");
+					_yield = (options.renderTo) ? $(options.renderTo) : $("#yield");
+					_append = (options.append) ? options.append : false;
 					_view = FRAMES.core.base_path + "_views/_" + this.controller + "_" + this.action + ".html";
 					_id = "_" + this.controller + "_" + this.action;
 					if ($("#" + _id).length === 0) {
-						return $.ajax({
+						$.ajax({
 							url: _view,
 							dataType: "html",
 							success: function (res) {
@@ -168,16 +170,26 @@ FRAMES.core = {
 								_yield.empty();
 								_source = $("#" + _id).html();
 								_template = Handlebars.compile(_source);
-								_yield.append(_template(data));
-								return FRAMES.helpers.hideLoader();
+								_test = Handlebars.precompile(_source);
+								_yield.append(_template(options.data));
+								FRAMES.helpers.hideLoader();
+								
+								if (typeof _cb == "function") { _cb(); }
+								
+								return false;
 							}
 						});
 					} else {
-						_yield.empty();
+						if (!_append) {
+							_yield.empty();
+						}
 						_source = $("#" + _id).html();
 						_template = Handlebars.compile(_source);
-						_yield.append(_template(data));
-						return FRAMES.helpers.hideLoader();
+						_yield.append(_template(options.data));
+						FRAMES.helpers.hideLoader();
+						
+						if (typeof _cb == "function") { _cb.call(this, _yield); }
+						return false;
 					}
 				}
 };

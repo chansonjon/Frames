@@ -8,11 +8,14 @@ Page = (function() {
 	
 	Page.prototype.setData = function() {
 		
-		return {
-			title: "Welcome to FRAMES",
-			text: "I hope you enjoy it!"
-		}
+		var envelope;
 		
+		return envelope = {
+			data: {
+				title: "Welcome to FRAMES",
+				text: "I hope you enjoy it!"
+			}
+		}
 	}
 	
 	return Page;

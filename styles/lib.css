@@ -1,15 +1,54 @@
 body {
 	font-family: Verdana, Arial, sans-serif;
-	font-size: 18px;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
 }
 
 h1 {
 	margin: 0 0 20px 0;
 }
 
-#yield {
-	margin: 50px auto;
-	width: 500px;
-	border: 1px solid #ccc;
+#frame {
+	width: 168px;
+	margin: 0 auto 20px auto;
+}
+
+#left, #right {
 	padding: 50px;
 }
+
+#left {
+	position: fixed;
+	min-height: 100%;
+	border-right: 1px solid #dcdcdc;
+	padding: 50px;
+	width: 168px;
+}
+
+#right {
+	position: absolute;
+	width: 1000px;
+	left: 268px;
+}
+
+#left ul, #nav li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#left li {
+	margin-bottom: 10px;
+}
+
+a {
+	color: #1A99AA;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #1A99AA;
+	text-decoration: none;
+}
+

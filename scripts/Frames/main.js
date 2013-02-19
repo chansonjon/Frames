@@ -2,6 +2,10 @@
  * REMOVE THIS IN PRODUCTION. OR DON'T.
 */
 
+require.config({
+    urlArgs: "v=" + (new Date()).getTime()
+});
+
 $.ajaxSetup({
 	cache: false
 });

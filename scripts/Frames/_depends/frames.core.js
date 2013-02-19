@@ -169,11 +169,10 @@ FRAMES.core = {
 							success: function (res) {
 								var _source, _template;
 								_yield.empty();
-								if (options.compile) {
+								if (_compile) {
 									_body.append(res);
 									_source = $("#" + _id).html();
 									_template = Handlebars.compile(_source);
-									_test = Handlebars.precompile(_source);
 									_yield.append(_template(_data));
 								} else {
 									_yield.append(res);
@@ -190,7 +189,7 @@ FRAMES.core = {
 						if (!_append) {
 							_yield.empty();
 						}
-						if (options.compile) {
+						if (_compile) {
 							_body.append(res);
 							_source = $("#" + _id).html();
 							_template = Handlebars.compile(_source);

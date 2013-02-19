@@ -161,7 +161,7 @@ FRAMES.core = {
 					_view = FRAMES.core.base_path + "_views/_" + this.controller + "_" + this.action + ".html";
 					_id = "_" + this.controller + "_" + this.action;
 					_data = (options && options.data) ? options.data : {};
-					_compile = (options && options.compile) ? options.compile : true;
+					_compile = (options && options.compile == false) ? options.compile : true;
 					if ($("#" + _id).length === 0) {
 						$.ajax({
 							url: _view,

@@ -54,3 +54,22 @@ a:hover {
 	text-decoration: none;
 }
 
+.highlight {
+	background: #dcdcdc;
+	padding: 1px;
+}
+
+.tile {
+	border: 1px solid #dcdcdc;
+	padding: 4px;
+	margin-bottom: 2px;
+	width: 156px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	opacity: 0.2;
+}
+
+.isotope-item {
+	opacity: 1;
+}

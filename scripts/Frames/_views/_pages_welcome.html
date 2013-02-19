@@ -4,12 +4,25 @@
 	Frames is a small, compact Javascript MVC framework intended for small to medium sized projects. Frames was inspired by some of the simpler routing conventions found in Ruby on Rails and CakePHP. Everything in Frames is driven off of the Controller/Action notion which is auto routed via the URL.
 </p>
 <p>
-	For example, imagine the following Frames URL was executed: http://localhost.com/#!/gallery/flickr/tag:sunset/
+	For example, imagine the following Frames URL was executed: <span class="highlight">http://localhost.com/#!/gallery/flickr/tag:sunset/</span>
+</p>
+
+<p>
+	Simply looking at the URL we know the code can be found in the 'Gallery' controller executing the 'flickr' method passing in the argument of 'sunset' in the 'tag' variable. Simple simon.
 </p>
 
 <h2>Why Frames? Why Another JS Framework?</h2>
 
 <p>
-	Mostly because I wanted to build one.
+	We all know we don't need another JS Framework, right? Between Backbone, Angular, Flight, Ember, Batman, etc there is a plethora of them.
 </p>
-	
+
+<p>
+	Honestly, it's a side project and it's fun. I really believe all developers should take the time to build a Framework in their spare time.
+</p>
+
+<h2>Can I Get a Framework With My Framework?</h2>
+
+<p>
+	You sure can. When I originally built Frames I did so using Google's Closure Compiler. It's been completely moved to <a href="http://requirejs.org/">RequireJS</a> now. Why Require? Because it's package management is awesome and it makes implementation super simple. A huge plus.
+</p>

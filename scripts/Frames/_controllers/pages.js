@@ -27,6 +27,15 @@ Pages = (function() {
 		
 	}
 	
+	Pages.prototype.documentation = function(args) {
+		
+		// Render the view passing data
+		FRAMES.core.renderView({
+			compile: false
+		});
+		
+	}
+	
 	// Return instance
 	return Pages;
 	

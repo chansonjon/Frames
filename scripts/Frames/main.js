@@ -31,13 +31,15 @@ var FRAMES = {
 		"_depends/frames.core"
 	],
 	controllers: [
-		"_controllers/pages"
+		"_controllers/pages",
+		"_controllers/examples"
 	],
 	models: [
-		"_models/page"
+		"_models/page",
+		"_models/example"
 	],
 	vendors: [
-	
+		"_vendor/isotope"
 	]
 }
 

@@ -161,22 +161,18 @@ FRAMES.core = {
 					_view = FRAMES.core.base_path + "_views/_" + this.controller + "_" + this.action + ".html";
 					_id = "_" + this.controller + "_" + this.action;
 					_data = (options && options.data) ? options.data : {};
-					console.log(_data);
 					_compile = (options && options.compile) ? options.compile : true;
-					console.log(_compile);
 					if ($("#" + _id).length === 0) {
 						$.ajax({
 							url: _view,
 							dataType: "html",
 							success: function (res) {
-								console.log(_data);
 								var _source, _template;
 								_yield.empty();
-								if (options.compile) {
+								if (_compile) {
 									_body.append(res);
 									_source = $("#" + _id).html();
 									_template = Handlebars.compile(_source);
-									_test = Handlebars.precompile(_source);
 									_yield.append(_template(_data));
 								} else {
 									_yield.append(res);
@@ -193,7 +189,7 @@ FRAMES.core = {
 						if (!_append) {
 							_yield.empty();
 						}
-						if (options.compile) {
+						if (_compile) {
 							_body.append(res);
 							_source = $("#" + _id).html();
 							_template = Handlebars.compile(_source);

@@ -29,10 +29,10 @@ var FRAMES = {
 		"_depends/frames.core"
 	],
 	controllers: [
-		"_controllers/pages"
+		"cs!_controllers/pages"
 	],
 	models: [
-		"_models/page"
+		"cs!_models/page"
 	],
 	vendors: [
 	
